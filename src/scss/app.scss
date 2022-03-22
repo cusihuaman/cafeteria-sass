@@ -1,11 +1,3 @@
+@use 'base';
+@use 'header';
 
-$color:red;
-
-body{
-    background-color: $color;
-    display: flex;
-    align-items: center;
-}
-h1{
-    color: rgb(80, 114, 114);
-}

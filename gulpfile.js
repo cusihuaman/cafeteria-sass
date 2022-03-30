@@ -3,6 +3,9 @@ const {src,dest,watch,series,parallel} = require ('gulp');
 const sass=require('gulp-sass')(require('sass'));
 const postcss=require('gulp-postcss');
 const autoprefixer=require('autoprefixer');
+const soucemaps =require('gulp-sourcemaps');
+const cssnano=require('cssnano');
+
 //imagenes
 const imagemin = require('gulp-imagemin');
 const webp=require('gulp-webp');
@@ -11,8 +14,10 @@ const avif=require('gulp-avif');
 function css(done){
     //compilar sass
     src('src/scss/app.scss')//identificar archivo
+    .pipe(soucemaps.init())
         .pipe(sass() )//compilar
-        .pipe(postcss([autoprefixer()]))
+        .pipe(postcss([autoprefixer(),cssnano()]))
+        .pipe(soucemaps.write('.'))
         .pipe(dest('build/css'))//guardar el css
     done();
 }
